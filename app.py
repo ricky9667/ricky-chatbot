@@ -15,7 +15,7 @@
 
 import os
 import sys
-from argparse import ArgumentParser
+from argparse import Action, ArgumentParser
 
 from flask import Flask, request, abort
 from linebot import (
@@ -25,8 +25,10 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FollowEvent
+    MessageEvent, TextMessage, TextSendMessage, FollowEvent, CarouselTemplate, CarouselColumn, MessageAction, TemplateSendMessage
 )
+
+from model import greetingTextMessage, carouselTemplateMessage
 
 app = Flask(__name__)
 
@@ -61,20 +63,15 @@ def callback():
     # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
         if isinstance(event, FollowEvent):
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage('Welcome!!!!!!!!!!!')
-            )
+            line_bot_api.reply_message(event.reply_token, carouselTemplateMessage)
+            line_bot_api.reply_message(event.reply_token, greetingTextMessage)
 
-        if not isinstance(event, MessageEvent):
-            continue
-        if not isinstance(event.message, TextMessage):
-            continue
-
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=event.message.text)
-        )
+        if isinstance(event, MessageEvent):
+            if isinstance(event.message, TextMessage):
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=event.message.text)
+                )
 
     return 'OK'
 
