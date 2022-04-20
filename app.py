@@ -61,9 +61,9 @@ def handle_text_message(event, message):
     if message.lower() in ['o', 'overview']:
         line_bot_api.reply_message(event.reply_token, carouselTemplateMessage)
     elif message.lower() in ['a', 'about']:
-        line_bot_api.reply_message(event.reply_token, carouselTemplateMessage)
-    elif message.lower() in ['h', 'help']:
         line_bot_api.reply_message(event.reply_token, aboutTemplateMessage)
+    elif message.lower() in ['h', 'help']:
+        line_bot_api.reply_message(event.reply_token, greetingTextMessage)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.message.text))
 
