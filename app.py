@@ -1,18 +1,3 @@
-# -*- coding: utf-8 -*-
-
-#  Licensed under the Apache License, Version 2.0 (the "License"); you may
-#  not use this file except in compliance with the License. You may obtain
-#  a copy of the License at
-#
-#       https://www.apache.org/licenses/LICENSE-2.0
-#
-#  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-#  License for the specific language governing permissions and limitations
-#  under the License.
-
-
 import os
 import sys
 from argparse import Action, ArgumentParser
@@ -28,7 +13,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, FollowEvent, CarouselTemplate, CarouselColumn, MessageAction, TemplateSendMessage
 )
 
-from model import greetingTextMessage, carouselTemplateMessage
+from model import greetingTextMessage, carouselTemplateMessage, aboutTemplateMessage
 
 app = Flask(__name__)
 
@@ -63,7 +48,6 @@ def callback():
     # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
         if isinstance(event, FollowEvent):
-            line_bot_api.reply_message(event.reply_token, carouselTemplateMessage)
             line_bot_api.reply_message(event.reply_token, greetingTextMessage)
 
         if isinstance(event, MessageEvent):
@@ -76,8 +60,10 @@ def callback():
 def handle_text_message(event, message):
     if message.lower() in ['o', 'overview']:
         line_bot_api.reply_message(event.reply_token, carouselTemplateMessage)
+    elif message.lower() in ['a', 'about']:
+        line_bot_api.reply_message(event.reply_token, carouselTemplateMessage)
     elif message.lower() in ['h', 'help']:
-        line_bot_api.reply_message(event.reply_token, greetingTextMessage)
+        line_bot_api.reply_message(event.reply_token, aboutTemplateMessage)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.message.text))
 
