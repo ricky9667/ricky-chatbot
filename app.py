@@ -68,12 +68,18 @@ def callback():
 
         if isinstance(event, MessageEvent):
             if isinstance(event.message, TextMessage):
-                line_bot_api.reply_message(
-                    event.reply_token,
-                    TextSendMessage(text=event.message.text)
-                )
+                handle_text_message(event, event.message.text)
 
     return 'OK'
+
+
+def handle_text_message(event, message):
+    if message.lower() in ['o', 'overview']:
+        line_bot_api.reply_message(event.reply_token, carouselTemplateMessage)
+    elif message.lower() in ['h', 'help']:
+        line_bot_api.reply_message(event.reply_token, greetingTextMessage)
+    else:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.message.text))
 
 
 if __name__ == "__main__":
