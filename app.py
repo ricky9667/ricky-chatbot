@@ -10,10 +10,15 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FollowEvent, CarouselTemplate, CarouselColumn, MessageAction, TemplateSendMessage
+    MessageEvent, TextMessage, TextSendMessage, FollowEvent
 )
 
-from model import greetingTextMessage, carouselTemplateMessage, aboutTemplateMessage
+from src.overview import greetingTextMessage, carouselTemplateMessage
+from src.about import aboutTemplateMessage, aboutTextMessage, ABOUT_COMMAND_TEXT
+from src.skills import skillsTemplateMessage, skillsTextMessage, SKILLS_COMMAND_TEXT
+from src.interests import interestsTemplateMessage, interestsTextMessage, INTERESTS_COMMAND_TEXT
+from src.contact import contactTextMessage, contactTemplateMessage, CONTACT_COMMAND_TEXT
+
 
 app = Flask(__name__)
 
@@ -62,10 +67,24 @@ def handle_text_message(event, message):
         line_bot_api.reply_message(event.reply_token, carouselTemplateMessage)
     elif message.lower() in ['a', 'about']:
         line_bot_api.reply_message(event.reply_token, aboutTemplateMessage)
+    elif message.lower() in ['s', 'skills']:
+        line_bot_api.reply_message(event.reply_token, skillsTemplateMessage)
+    elif message.lower() in ['i', 'interests']:
+        line_bot_api.reply_message(event.reply_token, interestsTemplateMessage)
+    elif message.lower() in ['c', 'contact']:
+        line_bot_api.reply_message(event.reply_token, contactTextMessage)
     elif message.lower() in ['h', 'help']:
         line_bot_api.reply_message(event.reply_token, greetingTextMessage)
+    elif message == ABOUT_COMMAND_TEXT:
+        line_bot_api.reply_message(event.reply_token, aboutTextMessage)
+    elif message == SKILLS_COMMAND_TEXT:
+        line_bot_api.reply_message(event.reply_token, skillsTextMessage)
+    elif message == INTERESTS_COMMAND_TEXT:
+        line_bot_api.reply_message(event.reply_token, interestsTextMessage)
+    elif message == CONTACT_COMMAND_TEXT:
+        line_bot_api.reply_message(event.reply_token, contactTextMessage)
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.message.text))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text='You said ' + event.message.text + '!'))
 
 
 if __name__ == "__main__":
