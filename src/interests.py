@@ -10,7 +10,7 @@ INTERESTS_COMMAND_TEXT = 'Get about info'
 interestsActions = [
     MessageAction(
         label='About me',
-        text=INTEREST_COMMAND_TEXT
+        text=INTERESTS_COMMAND_TEXT
     ),
     URIAction(
         label='My Website',

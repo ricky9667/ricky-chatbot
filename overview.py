@@ -2,10 +2,10 @@ from linebot.models import (
     TextSendMessage, TemplateSendMessage, CarouselTemplate, CarouselColumn, MessageAction, URIAction, ButtonsTemplate, MessageTemplateAction
 )
 
-from about import ABOUT_IMAGE_URL, aboutActions
-from skills import SKILLS_IMAGE_URL, skillsActions
-from interests import INTERESTS_IMAGE_URL, interestsActions
-from contact import CONTACT_IMAGE_URL, contactActions
+from src.about import ABOUT_IMAGE_URL, aboutActions
+from src.skills import SKILLS_IMAGE_URL, skillsActions
+from src.interests import INTERESTS_IMAGE_URL, interestsActions
+from src.contact import CONTACT_IMAGE_URL, contactActions
 
 greetingTextMessage = TextSendMessage(text='''
 Welcome to Ricky Hu Chatbot!

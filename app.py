@@ -13,7 +13,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, FollowEvent
 )
 
-from src.overview import greetingTextMessage, carouselTemplateMessage
+from overview import greetingTextMessage, carouselTemplateMessage
 from src.about import aboutTemplateMessage, aboutTextMessage, ABOUT_COMMAND_TEXT
 from src.skills import skillsTemplateMessage, skillsTextMessage, SKILLS_COMMAND_TEXT
 from src.interests import interestsTemplateMessage, interestsTextMessage, INTERESTS_COMMAND_TEXT
