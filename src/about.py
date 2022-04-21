@@ -20,7 +20,7 @@ aboutActions = [
 
 
 aboutTemplateMessage = TemplateSendMessage(
-    alt_text='About template',
+    alt_text='About',
     template=ButtonsTemplate(
         title='About Me',
         text='Get my basic introduction.',
@@ -30,8 +30,8 @@ aboutTemplateMessage = TemplateSendMessage(
 )
 
 
-aboutTextMessage = TextSendMessage(text='''
-I am a undergraduate student from Taipei Tech, studying Computer Science and Information Engineering. 
-I am passionate about learning new skills in programming, and enjoy particiating in activities and meet new people.
-I also have interest in Rubik's cube and table tennis.
-''')
+aboutTextMessage = TextSendMessage(
+    text='''I am currently undergraduate student from Taipei Tech, studying Computer Science and Information Engineering.\n
+I am passionate about learning new skills in programming, and enjoy particiating in activities and meet new people.\n
+I also have interest in Rubik's cube and table tennis.'''
+)

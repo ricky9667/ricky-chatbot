@@ -22,7 +22,7 @@ To start, you can try the following commands to know more about me:
 
 
 carouselTemplateMessage = TemplateSendMessage(
-    alt_text='Help template',
+    alt_text='Overview',
     template=CarouselTemplate(
         columns=[
             CarouselColumn(
@@ -46,7 +46,7 @@ carouselTemplateMessage = TemplateSendMessage(
             CarouselColumn(
                 thumbnail_image_url=CONTACT_IMAGE_URL,
                 title='Contact',
-                text='My contacts',
+                text='Connect to me if you are interested!',
                 actions=contactActions
             )
         ]
