@@ -10,7 +10,7 @@ CONTACT_IMAGE_URL = 'https://ik.imagekit.io/pxhytijjnsj/RickyChatbot/contact_rc3
 contactActions = [
     MessageAction(
         label='Contact Me',
-        text=CONTACT_IMAGE_URL
+        text=CONTACT_COMMAND_TEXT
     ),
     URIAction(
         label='My Website',

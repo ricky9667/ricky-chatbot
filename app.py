@@ -72,7 +72,7 @@ def handle_text_message(event, message):
     elif message.lower() in ['i', 'interests']:
         line_bot_api.reply_message(event.reply_token, interestsTemplateMessage)
     elif message.lower() in ['c', 'contact']:
-        line_bot_api.reply_message(event.reply_token, contactTextMessage)
+        line_bot_api.reply_message(event.reply_token, contactTemplateMessage)
     elif message.lower() in ['h', 'help']:
         line_bot_api.reply_message(event.reply_token, greetingTextMessage)
     elif message == ABOUT_COMMAND_TEXT:
